@@ -6,8 +6,9 @@ import pandas as pd
 file = "data/all_categorized_data/Energy.xlsx"
 
 df = pd.read_excel(file)
+len_all = len(df)
 
-print(df.head())
+# print(df.head())
 
 # Mapping bulan Indonesia ke Inggris
 bulan_map = {
@@ -32,4 +33,16 @@ for indo, eng in bulan_map.items():
 # Convert ke datetime
 df["Tanggal Pencatatan"] = pd.to_datetime(df["Tanggal Pencatatan"], dayfirst=True)
 
-print(df.head())
+# print(df.head())
+
+# Select ticker that listed after 2020
+df_aft2020 = df[df["Tanggal Pencatatan"] >= "2020-01-01"]
+len_aft = len(df_aft2020)
+
+# Select ticker that listed before 2020
+df_pre2020 = df[df["Tanggal Pencatatan"] <= "2020-01-01"]
+len_pre = len(df_pre2020)
+
+print(len_all)
+print(len_aft)
+print(len_pre)
